@@ -1,0 +1,97 @@
+# Persistent storage for mail data, state and logs
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mailserver-pvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+# Docker Mailserver Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mailserver
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mailserver
+  template:
+    metadata:
+      labels:
+        app: mailserver
+    spec:
+      containers:
+        - name: mailserver
+          image: ghcr.io/docker-mailserver/docker-mailserver:latest
+          ports:
+            - containerPort: 25
+            - containerPort: 143
+            - containerPort: 587
+            - containerPort: 993
+          env:
+            - name: OVERRIDE_HOSTNAME
+              value: mail.example.test
+            - name: ENABLE_IMAP
+              value: "1"
+            - name: ENABLE_POP3
+              value: "0"
+            - name: ENABLE_CLAMAV
+              value: "0"
+            - name: ENABLE_SPAMASSASSIN
+              value: "0"
+            - name: ENABLE_FAIL2BAN
+              value: "0"
+            - name: SSL_TYPE
+              value: ""
+            - name: PERMIT_DOCKER
+              value: connected-networks
+            - name: POSTMASTER_ADDRESS
+              value: postmaster@example.test
+          volumeMounts:
+            - name: mail-storage
+              mountPath: /var/mail
+              subPath: mail
+            - name: mail-storage
+              mountPath: /var/mail-state
+              subPath: mail-state
+            - name: mail-storage
+              mountPath: /var/log/mail
+              subPath: mail-logs
+            - name: mail-storage
+              mountPath: /tmp/docker-mailserver
+              subPath: dms-config
+      volumes:
+        - name: mail-storage
+          persistentVolumeClaim:
+            claimName: mailserver-pvc
+---
+# Internal Mailserver Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: mailserver
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: mailserver
+  ports:
+    - name: smtp
+      port: 25
+      targetPort: 25
+    - name: imap
+      port: 143
+      targetPort: 143
+    - name: submission
+      port: 587
+      targetPort: 587
+    - name: imaps
+      port: 993
+      targetPort: 993

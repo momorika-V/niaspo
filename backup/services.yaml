@@ -1,0 +1,193 @@
+﻿apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"adminer","namespace":"default"},"spec":{"ports":[{"port":8080,"targetPort":8080}],"selector":{"app":"adminer"},"type":"ClusterIP"}}
+    creationTimestamp: "2026-11-04T20:53:52Z"
+    name: adminer
+    namespace: default
+    resourceVersion: "553"
+    uid: df0e23ba-1ea8-4990-9715-6b7a0438033d
+  spec:
+    clusterIP: 10.98.65.140
+    clusterIPs:
+    - 10.98.65.140
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app: adminer
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2026-11-04T20:52:08Z"
+    labels:
+      component: apiserver
+      provider: kubernetes
+    name: kubernetes
+    namespace: default
+    resourceVersion: "255"
+    uid: 0a328f5e-568d-40b3-b03f-db89cd92ebf6
+  spec:
+    clusterIP: 10.96.0.1
+    clusterIPs:
+    - 10.96.0.1
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 8443
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"mailserver","namespace":"default"},"spec":{"ports":[{"name":"smtp","port":25,"targetPort":25},{"name":"imap","port":143,"targetPort":143},{"name":"submission","port":587,"targetPort":587},{"name":"imaps","port":993,"targetPort":993}],"selector":{"app":"mailserver"},"type":"ClusterIP"}}
+    creationTimestamp: "2026-11-04T20:53:53Z"
+    name: mailserver
+    namespace: default
+    resourceVersion: "570"
+    uid: 388796bd-2af3-4f43-b05f-05190f760c6b
+  spec:
+    clusterIP: 10.104.83.85
+    clusterIPs:
+    - 10.104.83.85
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: smtp
+      port: 25
+      protocol: TCP
+      targetPort: 25
+    - name: imap
+      port: 143
+      protocol: TCP
+      targetPort: 143
+    - name: submission
+      port: 587
+      protocol: TCP
+      targetPort: 587
+    - name: imaps
+      port: 993
+      protocol: TCP
+      targetPort: 993
+    selector:
+      app: mailserver
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"nginx","namespace":"default"},"spec":{"ports":[{"nodePort":30080,"port":80,"targetPort":80}],"selector":{"app":"nginx"},"type":"NodePort"}}
+    creationTimestamp: "2026-11-04T20:53:53Z"
+    name: nginx
+    namespace: default
+    resourceVersion: "587"
+    uid: df1846aa-b192-4a71-9a7e-89ed534c6fda
+  spec:
+    clusterIP: 10.103.228.18
+    clusterIPs:
+    - 10.103.228.18
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 30080
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    selector:
+      app: nginx
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"postgres","namespace":"default"},"spec":{"ports":[{"port":5432,"targetPort":5432}],"selector":{"app":"postgres"},"type":"ClusterIP"}}
+    creationTimestamp: "2026-11-04T20:53:53Z"
+    name: postgres
+    namespace: default
+    resourceVersion: "610"
+    uid: 2e76c7d8-da2a-4082-8e1b-a3c9ee22aff5
+  spec:
+    clusterIP: 10.111.15.42
+    clusterIPs:
+    - 10.111.15.42
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 5432
+      protocol: TCP
+      targetPort: 5432
+    selector:
+      app: postgres
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"roundcube","namespace":"default"},"spec":{"ports":[{"port":80,"targetPort":80}],"selector":{"app":"roundcube"},"type":"ClusterIP"}}
+    creationTimestamp: "2026-11-04T20:53:54Z"
+    name: roundcube
+    namespace: default
+    resourceVersion: "628"
+    uid: db025328-9b7f-49c7-9282-d0ca4900327f
+  spec:
+    clusterIP: 10.109.249.69
+    clusterIPs:
+    - 10.109.249.69
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+    selector:
+      app: roundcube
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ""

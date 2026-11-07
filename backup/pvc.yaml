@@ -1,0 +1,83 @@
+﻿apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"PersistentVolumeClaim","metadata":{"annotations":{},"name":"mailserver-pvc","namespace":"default"},"spec":{"accessModes":["ReadWriteOnce"],"resources":{"requests":{"storage":"1Gi"}}}}
+      pv.kubernetes.io/bind-completed: "yes"
+      pv.kubernetes.io/bound-by-controller: "yes"
+      volume.beta.kubernetes.io/storage-provisioner: k8s.io/minikube-hostpath
+      volume.kubernetes.io/storage-provisioner: k8s.io/minikube-hostpath
+    creationTimestamp: "2026-11-04T20:53:53Z"
+    finalizers:
+    - kubernetes.io/pvc-protection
+    name: mailserver-pvc
+    namespace: default
+    resourceVersion: "750"
+    uid: abff0b19-7b00-4c94-9294-c4f040da6364
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+    storageClassName: standard
+    volumeMode: Filesystem
+    volumeName: pvc-abff0b19-7b00-4c94-9294-c4f040da6364
+  status:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 1Gi
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-11-04T20:55:36Z"
+      message: A pod is currently referencing this PVC
+      reason: PodUsingPVC
+      status: "False"
+      type: Unused
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"PersistentVolumeClaim","metadata":{"annotations":{},"name":"postgres-pvc","namespace":"default"},"spec":{"accessModes":["ReadWriteOnce"],"resources":{"requests":{"storage":"1Gi"}}}}
+      pv.kubernetes.io/bind-completed: "yes"
+      pv.kubernetes.io/bound-by-controller: "yes"
+      volume.beta.kubernetes.io/storage-provisioner: k8s.io/minikube-hostpath
+      volume.kubernetes.io/storage-provisioner: k8s.io/minikube-hostpath
+    creationTimestamp: "2026-11-04T20:53:53Z"
+    finalizers:
+    - kubernetes.io/pvc-protection
+    name: postgres-pvc
+    namespace: default
+    resourceVersion: "624"
+    uid: 5aed3124-4cee-447d-ad89-d99f3f9675bc
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+    storageClassName: standard
+    volumeMode: Filesystem
+    volumeName: pvc-5aed3124-4cee-447d-ad89-d99f3f9675bc
+  status:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 1Gi
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-11-04T20:53:54Z"
+      message: A pod is currently referencing this PVC
+      reason: PodUsingPVC
+      status: "False"
+      type: Unused
+    phase: Bound
+kind: List
+metadata:
+  resourceVersion: ""
