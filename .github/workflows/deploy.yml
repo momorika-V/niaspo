@@ -13,15 +13,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Verify Docker Hub secrets
-        shell: bash
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: |
-          if [ -z "$DOCKER_USERNAME" ]; then echo "DOCKER_USERNAME is EMPTY"; exit 1; fi
-          if [ -z "$DOCKER_PASSWORD" ]; then echo "DOCKER_PASSWORD is EMPTY"; exit 1; fi
-          echo "Both secrets are present."
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -34,5 +25,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/mail-system-nginx:latest
-
+          tags: momorika/mail-system-nginx:latest
