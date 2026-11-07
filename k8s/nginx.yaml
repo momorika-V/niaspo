@@ -9,6 +9,7 @@ data:
     server {
         listen 80;
         server_name localhost;
+        absolute_redirect off;
 
         location = / {
             return 302 /roundcube/;
@@ -52,7 +53,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: nginx:latest
+          image: momorika/mail-system-nginx:latest
           ports:
             - containerPort: 80
           volumeMounts:
@@ -78,3 +79,4 @@ spec:
     - port: 80
       targetPort: 80
       nodePort: 30080
+
